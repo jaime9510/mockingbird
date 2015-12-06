@@ -1,7 +1,10 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
+.factory('Chats', function($http) {
   // Might use a resource here that returns a JSON array
+
+  var base = "https://server-mockingbird.herokuapp.com";
+
 
   // Some fake testing data
   var chats = [{
@@ -34,6 +37,11 @@ angular.module('starter.services', [])
   return {
     all: function() {
       return chats;
+    },
+    allSongs: function() {
+      return $http.get(base + '/songs', {
+        method: 'GET'
+      });
     },
     remove: function(chat) {
       chats.splice(chats.indexOf(chat), 1);

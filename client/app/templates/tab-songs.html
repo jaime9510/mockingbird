@@ -1,0 +1,31 @@
+<ion-view view-title="Canciones">
+  <ion-content>
+
+    <div class="card" ng-repeat="song in songs">
+      <div class="item item-divider">
+        <h2>{{song.name}}</h2>
+        <span class="badge badge-positive">Puntuación: {{song.score}}/5</span>
+      </div>
+
+      <div class="list card">
+
+        <a href="#" class="item item-icon-left">
+          <i class="icon ion-ios-person"></i>
+          Artista: {{song.artist}}
+        </a>
+
+        <a href="#" class="item item-icon-left">
+          <i class="icon ion-ios-musical-notes"></i>
+          Genero: {{song.genre}}
+        </a>
+
+          <ion-toggle class="item item-icon-left" ng-model="settings.enableFriends">
+            <i class="icon ion-ios-star"></i>
+            Recomendar canción
+          </ion-toggle>
+
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
