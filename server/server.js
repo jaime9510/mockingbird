@@ -6,6 +6,7 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
+var uriUtil = require('mongodb-uri');
 var routes = require('./routes');
 var app = express();
 
@@ -32,6 +33,8 @@ var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000
 
 var mongodbUri = 'mongodb://root:root@ds051960.mongolab.com:51960/mockingbird';
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
+
+console.log(mongooseUri);
 
 //Conexión a base de datos
 mongoose.connect(mongooseUri, options, function(err, res) {
