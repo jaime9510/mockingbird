@@ -6,8 +6,6 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
-var uriUtil = require("uri-util");
-var uriUtil = require('mongodb-uri');
 var routes = require('./routes');
 var app = express();
 
@@ -27,7 +25,8 @@ app.all('/*', function(req, res, next) {
   }
 });
 
-
+//Conexión a base de datos
+//mongoose.connect('mongodb://localhost:27017/mockingbird', function(err, res) {
 var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 
@@ -38,7 +37,6 @@ var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 mongoose.connect(mongooseUri, options, function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
-    console.error.bind(console, 'connection error:')
   } else {
     console.log('Connected to Mockingbird Database');
   }

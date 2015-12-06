@@ -1,6 +1,6 @@
 // clients.js
 //=======================================================================
-//Con la llamada a module.exports conseguimos modularizarlo y
+//Con la llamada a module.exports conseguimos modularizarlo y 
 //que pueda ser llamado desde el archivo principal de la aplicación.
 var mongoose = require('mongoose');
 //var Client = require('../model/client.js');
@@ -26,11 +26,11 @@ var Client = mongoose.model('Client');
 		return Client.findById(req.params.id,function(err, client){
 			if(!client){
 				res.statusCode = 404;
-				return res.send({error: 'Not found'});
+				return res.send({error: 'Not found'});				
 			}
-			if (!err) {
+			if (!err) {				
 		        return res.send({ status: 'OK', client:client });
-
+		       
 			} else {
 		        res.statusCode = 500;
 		        console.log('Internal error(%d): %s',res.statusCode,err.message);
@@ -39,7 +39,7 @@ var Client = mongoose.model('Client');
 		});
 	};
 	/*
-	exports.addClient = function(req, res) {
+	exports.addClient = function(req, res) {  
 	    console.log('POST');
 	    console.log(req.body);
 
@@ -53,7 +53,7 @@ var Client = mongoose.model('Client');
 	    client.save(function(err, client) {
 	        if(err) return res.send(500, err.message);
 	    //res.status(200).jsonp(client);
-
+	    
 	    });
 	    res.send(client);
 	};
@@ -61,7 +61,7 @@ var Client = mongoose.model('Client');
 	//POST - Insert a new Tshirt in the DB
 	exports.addClient = function(req, res){
 		console.log('POST - /client');
-		console.log(req.params);
+		console.log(req.body);
 		var client = new Client({
 			username: 		req.body.username,
 			email: 			req.body.email,
@@ -83,11 +83,11 @@ var Client = mongoose.model('Client');
 			        res.send({ error: 'Server error' });
 			    }
 			    console.log('Internal error(%d): %s',res.statusCode,err.message);
-			}
+			}				
 		});
 		res.send(client);
 	};
-
+	
 	//DELETE - Delete a Client with specified ID
 	exports.deleteClient = function(req, res) {
 	    console.log("DELETE - /client/:id");
@@ -118,3 +118,4 @@ var Client = mongoose.model('Client');
   	//app.post('/client', addClient);
   	//app.put('/tshirt/:id', updateTshirt);
   	//app.delete('/tshirt/:id', deleteTshirt);
+
