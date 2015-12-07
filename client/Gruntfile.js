@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: 'app',
-      scripts: 'scripts',
+      scripts: 'js',
       styles: 'styles',
       images: 'images',
       test: 'test',
@@ -323,7 +323,7 @@ module.exports = function (grunt) {
     karma: {
       options: {
         basePath: '',
-        frameworks: ['mocha', 'chai'],
+        frameworks: ['jasmine'],
         files: [
           '<%= yeoman.app %>/bower_components/angular/angular.js',
           '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
@@ -336,7 +336,7 @@ module.exports = function (grunt) {
           '<%= yeoman.test %>/mock/**/*.js',
           '<%= yeoman.test %>/spec/**/*.js'
         ],
-        autoWatch: false,
+        autoWatch: true,
         reporters: ['dots', 'coverage'],
         port: 8080,
         singleRun: false,

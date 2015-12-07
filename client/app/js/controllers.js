@@ -11,6 +11,8 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+  $scope.prueba = 1;
+
   var v = 0;
   console.log('Songs controller');
 
