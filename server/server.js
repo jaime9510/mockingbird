@@ -31,7 +31,7 @@ app.all('/*', function(req, res, next) {
 var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
                 replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
 
-var mongodbUri = 'mongodb://root:root@ds051960.mongolab.com:51960/mockingbird';
+var mongodbUri = 'mongodb://farleyrua:farleyrua@ds063833.mongolab.com:63833/heroku_6b7jmcwj';
 var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 
 console.log(mongooseUri);

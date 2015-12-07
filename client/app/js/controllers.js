@@ -2,22 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('SongsCtrl', function($scope, Chats) {
+.controller('SongsCtrl', function($scope, back_api) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -28,7 +13,7 @@ angular.module('starter.controllers', [])
 
   console.log('Songs controller');
 
-  Chats.allSongs().success(function(data) {
+  back_api.allSongs().success(function(data) {
     $scope.songs = data;
   });
 
@@ -40,7 +25,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RecommendationCtrl', function($scope, Chats) {
+.controller('RecommendationCtrl', function($scope, back_api) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -51,14 +36,27 @@ angular.module('starter.controllers', [])
 
   console.log('Recommendation controller');
 
-  Chats.allRecommendations().success(function(data) {
-    $scope.reccomends = data;
+  back_api.allRecommendations().success(function(data) {
+    $scope.recommends = data;
   });
 
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('RankingCtrl', function($scope, back_api) {
+  // With the new view caching in Ionic, Controllers are only called
+  // when they are recreated or on app start, instead of every page change.
+  // To listen for when this page is active (for example, to refresh data),
+  // listen for the $ionicView.enter event:
+  //
+  //$scope.$on('$ionicView.enter', function(e) {
+  //});
+
+  console.log('Ranking controller');
+
+  back_api.ranking().success(function(data) {
+    $scope.ranking = data;
+  });
+
 })
 
 .controller('AccountCtrl', function($scope) {
