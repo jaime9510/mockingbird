@@ -3,8 +3,8 @@ angular.module('starter.services', [])
 .factory('back_api', function($http) {
   // Might use a resource here that returns a JSON array
 
-  //var base = "https://server-mockingbird.herokuapp.com";
-  var base = "http://localhost:3001";
+  var base = "https://server-mockingbird.herokuapp.com";
+  //var base = "http://localhost:3001";
 
 
   return {

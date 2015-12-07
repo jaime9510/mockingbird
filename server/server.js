@@ -1,6 +1,6 @@
-require('./model/Client');
-require('./model/Recommendation');
-require('./model/Song');
+require('./model/client');
+require('./model/recommendation');
+require('./model/song');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');

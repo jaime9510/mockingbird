@@ -203,10 +203,10 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 	exports.addRecommendation = function(req, res){
 		console.log('POST - /recommendation');
 		console.log(req.body);
-		var cancion = req.body.song.name;
+		var cancion = req.body.params.song.name;
 
 		var recommendation = new Recommendation({
-			song:   		req.body.song
+			song:   		req.body.params.song
 		});
 
 		recommendation.save(function(err){
