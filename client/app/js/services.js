@@ -38,11 +38,19 @@ angular.module('starter.services', [])
     all: function() {
       return chats;
     },
+
     allSongs: function() {
       return $http.get(base + '/songs', {
         method: 'GET'
       });
     },
+
+    allRecommendations: function() {
+      return $http.get(base + '/last_week_recommendations', {
+        method: 'GET'
+      });
+    },
+
     remove: function(chat) {
       chats.splice(chats.indexOf(chat), 1);
     },

@@ -78,7 +78,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-  
+
+  .state('tab.recommends', {
+    url: '/recommendations',
+    views: {
+      'tab-recommendations': {
+        templateUrl: 'templates/tab-recommendations.html',
+        controller: 'RecommendationCtrl'
+      }
+    }
+  })
+
   .state('tab.account', {
     url: '/account',
     views: {

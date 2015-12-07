@@ -1,10 +1,10 @@
 // songs.js
 //=======================================================================
-//Con la llamada a module.exports conseguimos modularizarlo y 
+//Con la llamada a module.exports conseguimos modularizarlo y
 //que pueda ser llamado desde el archivo principal de la aplicación.
 var mongoose = require('mongoose');
 var Song = mongoose.model('Song');
-	
+
 	exports.findGenres = function(req, res) {
 		console.log('GET - /genres');
 		return Song.find({ },{"genre":1, "_id":0}, function(err, genres){
@@ -80,6 +80,8 @@ var Song = mongoose.model('Song');
 		console.log('GET - /songs');
 		return Song.find(function(err, songs){
 			if (!err) {
+				console.log('Canciones:');
+				console.log(songs);
 				return res.send(songs);
 			}else{
 				res.statusCode = 500;
@@ -95,11 +97,11 @@ var Song = mongoose.model('Song');
 		return Song.findById(req.params.id,function(err, song){
 			if(!song){
 				res.statusCode = 404;
-				return res.send({error: 'Not found'});				
+				return res.send({error: 'Not found'});
 			}
-			if (!err) {				
+			if (!err) {
 		        return res.send({ status: 'OK', song:song });
-		       
+
 			} else {
 		        res.statusCode = 500;
 		        console.log('Internal error(%d): %s',res.statusCode,err.message);
@@ -136,11 +138,11 @@ var Song = mongoose.model('Song');
 			        res.send({ error: 'Server error' });
 			    }
 			    console.log('Internal error(%d): %s',res.statusCode,err.message);
-			}				
+			}
 		});
 		res.send(song);
 	};
-	
+
 	//DELETE - Delete a Song with specified ID
 	exports.deleteSong = function(req, res) {
 	    console.log("DELETE - /song/:id");
