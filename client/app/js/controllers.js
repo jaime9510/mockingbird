@@ -11,17 +11,23 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+  var v = 0;
   console.log('Songs controller');
 
   back_api.allSongs().success(function(data) {
     $scope.songs = data;
   });
 
-  $scope.settings = {
-    enableFriends: true
-  };
+  $scope.votar = function(song) {
 
-  console.log($scope.songs);
+    back_api.votar(song).success(function(data) {
+      v = v + 1;
+      console.log(song.name, ' Voto ', v)
+    }).error(function(data) {
+      console.log('error: ', data);
+    });
+
+  };
 
 })
 

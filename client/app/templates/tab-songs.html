@@ -18,11 +18,18 @@
           Genero: {{song.genre}}
         </a>
 
-          <ion-toggle class="item item-icon-left" ng-model="settings.enableFriends">
-            <i class="icon ion-ios-star"></i>
-            Recomendar canción
-          </ion-toggle>
+        <button class="button button-outline button-block button-positive" ng-click="votar(song)">
+          <i class="icon ion-ios-star"></i>
+          Votar por esta canción
+        </button>
 
+
+<!--
+        <ion-toggle class="item item-icon-left" ng-model="song.votar.enable">
+          <i class="icon ion-ios-star"></i>
+          Recomendar canción
+        </ion-toggle>
+-->
       </div>
     </div>
 

@@ -3,7 +3,9 @@ angular.module('starter.services', [])
 .factory('back_api', function($http) {
   // Might use a resource here that returns a JSON array
 
-  var base = "https://server-mockingbird.herokuapp.com";
+  //var base = "https://server-mockingbird.herokuapp.com";
+  var base = "http://localhost:3001";
+
 
   return {
 
@@ -16,6 +18,16 @@ angular.module('starter.services', [])
     ranking: function() {
       return $http.get(base + '/last_week_recommendations', {
         method: 'GET'
+      });
+    },
+
+    votar: function(song) {
+      console.log('servicios', song.name);
+      return $http.post(base + '/recommendation', {
+        method: 'POST',
+        params: {
+          song: song
+        }
       });
     },
 

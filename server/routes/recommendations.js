@@ -1,6 +1,6 @@
 // recommendations.js
 //=======================================================================
-//Con la llamada a module.exports conseguimos modularizarlo y 
+//Con la llamada a module.exports conseguimos modularizarlo y
 //que pueda ser llamado desde el archivo principal de la aplicación.
 var mongoose = require('mongoose');
 var Recommendation = mongoose.model('Recommendation');
@@ -23,7 +23,7 @@ var date_last_month =  year+"-"+last_month+"-"+day+"T00:00:00.000Z";
 //Calcular fecha de recomendaciones hechas desde hace un año
 var last_year = year-1;
 var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
-	
+
 	exports.prueba = function(req, res){
 		console.log('GET - /prueba');
 		return Recommendation.find('song.name',function(err, recommendations){
@@ -39,7 +39,7 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 								resultados[i]['cantidad'] = resultados[i]['cantidad'] + 1;
 								resultados[i]['artist'] = recommendations[j]['song']['artist'];
 							}
-						}						
+						}
 					}
 					resultados.sort(function(a,b){
 						return b.cantidad - a.cantidad;
@@ -85,7 +85,7 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 								resultados[i]['cantidad'] = resultados[i]['cantidad'] + 1;
 								resultados[i]['artist'] = recommendations[j]['song']['artist'];
 							}
-						}						
+						}
 					}
 					resultados.sort(function(a,b){
 						return b.cantidad - a.cantidad;
@@ -117,7 +117,7 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 								resultados[i]['cantidad'] = resultados[i]['cantidad'] + 1;
 								resultados[i]['artist'] = recommendations[j]['song']['artist'];
 							}
-						}						
+						}
 					}
 					resultados.sort(function(a,b){
 						return b.cantidad - a.cantidad;
@@ -149,7 +149,7 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 								resultados[i]['cantidad'] = resultados[i]['cantidad'] + 1;
 								resultados[i]['artist'] = recommendations[j]['song']['artist'];
 							}
-						}						
+						}
 					}
 					resultados.sort(function(a,b){
 						return b.cantidad - a.cantidad;
@@ -185,11 +185,11 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 		return Recommendation.findById(req.params.id,function(err, recommendation){
 			if(!recommendation){
 				res.statusCode = 404;
-				return res.send({error: 'Not found'});				
+				return res.send({error: 'Not found'});
 			}
-			if (!err) {				
+			if (!err) {
 		        return res.send({ status: 'OK', recommendation:recommendation });
-		       
+
 			} else {
 		        res.statusCode = 500;
 		        console.log('Internal error(%d): %s',res.statusCode,err.message);
@@ -197,14 +197,14 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
      		}
 		});
 	};
-	
+
 
 	//POST - Insert a new Tshirt in the DB
 	exports.addRecommendation = function(req, res){
 		console.log('POST - /recommendation');
 		console.log(req.body);
 		var cancion = req.body.song.name;
-		
+
 		var recommendation = new Recommendation({
 			song:   		req.body.song
 		});
@@ -223,11 +223,11 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 			        res.send({ error: 'Server error' });
 			    }
 			    console.log('Internal error(%d): %s',res.statusCode,err.message);
-			}				
+			}
 		});
 		//res.send(recommendation);
 	};
-	
+
 	//DELETE - Delete a Client with specified ID
 	exports.deleteRecommendation = function(req, res) {
 	    console.log("DELETE - /recommendation/:id");
@@ -249,6 +249,3 @@ var date_last_year =  last_year+"-"+month+"-"+day+"T00:00:00.000Z";
 	      })
 	    });
 	};
-
-
-
