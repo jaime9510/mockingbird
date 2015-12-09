@@ -1,3 +1,5 @@
+var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+
 exports.config = {
         capabilities: {
             'browserName': 'chrome',
@@ -11,5 +13,14 @@ exports.config = {
         ],
         jasmineNodeOpts: {
             isVerbose: true,
+        },
+
+        onPrepare: function() {
+          jasmine.getEnv().addReporter(
+            new HtmlScreenshotReporter({
+              dest: 'target/screenshots',
+              filename: 'my-report.html'
+            })
+          );
         }
 };

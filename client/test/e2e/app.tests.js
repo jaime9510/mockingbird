@@ -1,6 +1,6 @@
 
 
-describe('Probando las tabs de la aplicación', function() {
+describe('Debe haber una tab para las canciones recomendadas', function() {
 
   browser.get('/#/tab/dash');
 

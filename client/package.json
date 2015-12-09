@@ -43,6 +43,9 @@
     "orchestrator": "~0.3.7",
     "plist": "1.1.0",
     "protractor": "^3.0.0",
+    "protractor-html-screenshot-reporter": "0.0.21",
+    "protractor-jasmine2-screenshot-reporter": "^0.1.7",
+    "protractor-screenshot-reporter": "0.0.5",
     "ripple-emulator": "~0.9.24",
     "time-grunt": "~1.0.0",
     "win-spawn": "^2.0.0"
