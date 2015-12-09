@@ -199,39 +199,6 @@ describe('Testing controlador Recomendaciones', function() {
 
 });
 
-describe('Canciones con spy', function() {
-
-  beforeEach(module('starter.controllers'));
-
-  // instantiate the controller and mocks for every test
-  beforeEach(inject(function($controller, $q) {
-      deferredSongs = $q.defer();
-
-      // mock allSongs
-      Api_BackMock = {
-          allSongs: jasmine.createSpy('allSongs spy')
-                        .and.returnValue(deferredSongs.promise)
-      };
-
-      beforeEach(inject(function($controller, $rootScope) {
-
-        scope = $rootScope.$new();
-        controller = $controller('SongsCtrl', {
-          $scope: scope,
-          back_api: Api_BackMock
-        });
-      }));
-
-      // Act and assert
-      it('La variable songs no debe estar definida', function() {
-        back_api.allSongs();
-
-        expect(scope.songs.length).toBe(3);
-      });
-
-  }));
-
-});
 
 describe('Testing account', function() {
 

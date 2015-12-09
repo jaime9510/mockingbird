@@ -21,7 +21,6 @@ angular.module('starter.services', [])
     },
 
     votar: function(song) {
-      console.log('servicios', song.name);
       return $http.post(base + '/recommendation', {
         method: 'POST',
         params: {
