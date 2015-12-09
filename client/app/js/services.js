@@ -6,7 +6,6 @@ angular.module('starter.services', [])
   var base = "https://server-mockingbird.herokuapp.com";
   //var base = "http://localhost:3001";
 
-
   return {
 
     allSongs: function() {
