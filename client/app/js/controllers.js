@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('SongsCtrl', function($scope, back_api) {
+.controller('SongsCtrl', function($scope, $ionicPopup, back_api) {
 
   back_api.allSongs().success(function(data) {
     $scope.songs = data;
@@ -11,7 +11,10 @@ angular.module('starter.controllers', [])
   $scope.votar = function(song) {
 
     back_api.votar(song).success(function(data) {
-
+      $ionicPopup.alert({
+           title: 'Voto registrado exitosamente',
+           template: 'Usted a recomendado la canción ' + song.name
+         });
     });
 
   };
