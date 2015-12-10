@@ -1,147 +1,48 @@
 'use strict';
 
-/**
-describe('Controlador de canciones.', function() {
-
-  var scope, back_api;
-  var mockBack_Api = {};
-  var controller;
-
-  beforeEach(module('starter.controllers'));
-
-  beforeEach(function() {
-
-    module('starter.services', function($provide) {
-      $provide.value('back_api', mockBack_Api);
-    });
-
-    inject(function($q) {
-      mockBack_Api.data = [
-        {
-          "_id":"5664a859e4b00d59f0b723d7",
-          "name":"Morena ven",
-          "artist":"Los Hermanos Rosario",
-          "genre":"Merengue"
-        },
-        {
-          "_id":"5664a884e4b00d59f0b723d9",
-          "name":"Gitana",
-          "artist":"Willie Colón",
-          "genre":"Salsa"
-        }
-      ];
-
-      mockBack_Api.allSongs = function() {
-        var defer = $q.defer();
-
-        defer.resolve(this.data);
-
-        return defer.promise;
-      };
-
-      mockBack_Api.votar = function(song) {
-        var defer = $q.defer();
-
-        var item = {
-          song: song
-        };
-
-        this.data.push(item);
-        defer.resolve(item);
-
-        return defer.promise;
-      };
-    });
-
-  });
-
-  beforeEach(inject(function($controller, $rootScope, _back_api_) {
-
-    scope = $rootScope.$new();
-    back_api = _back_api_;
-
-    controller = $controller('SongsCtrl', {
-      $scope: scope,
-      back_api: back_api
-    });
-
-    scope.$digest();
-  }));
-
-
-  it('Debe contener todas las canciones al principio', function() {
-
-    scope.songs = mockBack_Api.allSongs();
-
-    expect(scope.songs).toEqual([
-      {
-        "_id":"5664a859e4b00d59f0b723d7",
-        "name":"Morena ven",
-        "artist":"Los Hermanos Rosario",
-        "genre":"Merengue"
-      },
-      {
-        "_id":"5664a884e4b00d59f0b723d9",
-        "name":"Gitana",
-        "artist":"Willie Colón",
-        "genre":"Salsa"
-      }
-    ]);
-  });
-
-  it('Debe crear nuevas canciones y añadirlas a la lista', function() {
-    // We simulate we entered a new library name
-    scope.newItemSong = {
-              "_id":"7774a859e4b00d59f0b723d7",
-              "name":"Blanca vete",
-              "artist":"Los Primos Perdidos",
-              "genre":"Bachata"
-            };
-
-    // And that we clicked a button or something
-    scope.votar();
-
-    scope.$digest();
-
-    var lastLibrary = scope.songs[scope.songs.length - 1];
-
-    expect(lastLibrary).toEqual({
-      "_id":"7774a859e4b00d59f0b723d7",
-      "name":"Blanca vete",
-      "artist":"Los Primos Perdidos",
-      "genre":"Bachata"
-    });
-  });
-});
-
-**/
-
 describe('Testing controlador canciones', function() {
 
   // Arrange
   var scope = {};
   var controller;
   var back_api;
+  var ionicPopupMock;
 
   beforeEach(module('starter.controllers'));
   beforeEach(module('starter.services'));
 
   beforeEach(inject(function($controller, $rootScope, $injector) {
 
+    // mock $ionicPopup
+		ionicPopupMock = jasmine.createSpyObj('$ionicPopup spy', ['alert']);
+
     back_api = $injector.get('back_api');
     scope = $rootScope.$new();
     controller = $controller('SongsCtrl', {
       $scope: scope,
-      back_api: back_api
+      back_api: back_api,
+      $ionicPopup: ionicPopupMock
     });
   }));
 
   // Act and assert
   it('La variable songs no debe estar definida', function() {
 
-    back_api.allSongs();
+     back_api.allSongs();
 
-    expect(scope.songs).not.toBeDefined();
+     expect(scope.songs).not.toBeDefined();
+  });
+
+  it('Debe ser posible votar por una canción', function() {
+
+    scope.votar({
+      "_id":"7774a859e4b00d59f0b723d7",
+      "name":"Blanca vete",
+      "artist":"Los Primos Perdidos",
+      "genre":"Bachata"
+    });
+
+    expect(ionicPopupMock.alert).toBeDefined();
   });
 
 });
@@ -222,29 +123,22 @@ describe('Testing account', function() {
 
 });
 
-/**
-describe('Test controlador de canciones', function() {
+describe('App file', function() {
 
-  // Arrange
-  var scope = {};
-  var controller;
-  var back_api;
+  var ionicPlatformMock;
 
-  beforeEach(module('starter.controllers'));
+  beforeEach(module('starter'));
 
-  beforeEach(inject(function($controller, $rootScope, _back_api_) {
+  beforeEach(inject(function() {
 
-    back_api = _back_api_
-    scope = $rootScope.$new();
-    controller = $controller('SongsCtrl', {
-      $scope: scope,
-      back_api: back_api
-    });
+    // mock
+    ionicPlatformMock = jasmine.createSpyObj('$ionicPlatform spy', ['ready']);
+
   }));
 
-  it('Debe estar definida la función que permite votar por una canción', function() {
-    expect(scope.votar).toBeDefined();
+  // Act and assert
+  it('Debe tener la variable settings asignada', function() {
+    expect(ionicPlatformMock.ready).toBeDefined();
   });
 
 });
-**/
